@@ -183,24 +183,28 @@ public class LongZhuTest extends Frame implements ActionListener {
 		tf1.setVisible(true);
 	}
 
-	private void initQuanMinCustomers(){
+	private void initQuanMinUser(){
 		
 		if(this.longZhuCustomers == null){
 			this.longZhuCustomers = new ArrayList<QuanMinUser>();
 
-			//98  120.132.77.173
-			//117 120.132.77.173
+			// 120.132.77.173
 			longZhuCustomers.add(new QuanMinUser("117","kuaiyong_s57d94296eea0b",160922,"330434980"));
-
 			// mzky2327  3266585     98区，快用 qq:121114123
 			longZhuCustomers.add(new QuanMinUser("98","kuaiyong_s57b6f76a97b69",161023,"121114123"));
-			// y891223   3266585，一样的快用，98区 qq:373132213
-			longZhuCustomers.add(new QuanMinUser("98","kuaiyong_s57b6cd511bcbc",161023,"373132213"));
 			// ios longzhu  rr365787   123456  57 qq: 614040711
 			longZhuCustomers.add(new QuanMinUser("57","kuaiyong_s557110a3d2052",160930,"614040711"));
-
+			
+			// y891223   3266585，一样的快用，98区 qq:373132213
+			longZhuCustomers.add(new QuanMinUser("98","kuaiyong_s57b6cd511bcbc",161023,"373132213"));
+			// 113 pyw990901628 qwer1234 优趣版本  qq: 1013135714
+//			longZhuCustomers.add(new QuanMinUser("113","pyw_45b68174e0020b50f0129f8405eb9526",161009,"1013135714"));
+			// 113区 BaiDu ssjia2000 abc123456 qq:346577928 
+//			longZhuCustomers.add(new QuanMinUser("113","baidu_1923458579",161009,"346577928"));
+			
 			// jiuyou longzhu 420690547  13432169259123 81  qq: 1219421451
-//			quanMinCustomers.add(new QuanMinUser("81","uc_1474397353",160930,"1219421451"));
+//			longZhuCustomers.add(new QuanMinUser("81","uc_1474397353",160930,"1219421451"));
+
 		}
 	}
 
