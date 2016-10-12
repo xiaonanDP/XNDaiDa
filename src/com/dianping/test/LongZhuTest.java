@@ -2,9 +2,6 @@ package com.dianping.test;
 
 import cn.redcdn.datacenter.httprequest.HttppostDataCenter;
 import com.infosys.test.QuanMinUser;
-import com.infosys.test.SanGuoUser;
-import com.redcdn.test.Server;
-import com.redcdn.test.StringUtils;
 import com.redcdn.test.TestAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,28 +11,38 @@ import org.json.JSONTokener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class LongZhuTest extends Frame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	Button cutButton;
-	TextField secondText;
-	TextField timeText;
 	Label label;
-	static int timeDuration = 0;
+	JTextField freeNumberTextField;
+	int freeCustomerNumber;
+	
+	JButton fileButton;
+	JTextArea resultArea;
+	
+	List<QuanMinUser> longZhuCustomers = null;
+	private String customerString = "";
 
-	List<QuanMinUser> quanMinCustomers = null;
-
+	private HashMap<String,String> bossHPMap = new HashMap<String,String>();
+	
 	public LongZhuTest() {
 		super("LongZhuDaiDa！");
 
-		setSize(500, 80);
+		setSize(500, 300);
 		addWindowListener(new TestAdapter());
 
 		Panel toolbar = new Panel();
@@ -45,46 +52,88 @@ public class LongZhuTest extends Frame implements ActionListener {
 		cutButton.addActionListener(this);
 		toolbar.add(cutButton);
 
-		secondText = new TextField(8);
-		secondText.setText("1");
-		toolbar.add(secondText);
-
-		label = new Label("秒每次;");
-		toolbar.add(label);
-
+		freeNumberTextField = new JTextField(1);
+		toolbar.add(freeNumberTextField);
+		
 		label = new Label("LanDaCount :      ");
 		toolbar.add(label);
 
-		timeText = new TextField(6);
-		timeText.setText("1000");
-		toolbar.add(timeText);
+		fileButton = new JButton("选择文件...");
+		fileButton.addActionListener(this);
+		toolbar.add(fileButton);
 
-		Label label_ = new Label("分钟后关闭.");
-		toolbar.add(label_);
+		JScrollPane backGround = new JScrollPane();
+
+		resultArea = new JTextArea(200,300);
+		backGround.setViewportView(resultArea);
+
+		add(backGround, BorderLayout.CENTER);
 
 		add(toolbar, BorderLayout.NORTH);
 
 	}
 
-	static int interval = 0;
-
 	public void actionPerformed(ActionEvent ae) {
-		beginWork();
+		if (ae.getSource() == cutButton) {
+			beginWork();
+		} else if (ae.getSource() == fileButton) {
+			chooseFile();
+		}
+	}
+	
+	public void chooseFile() {
+
+		JFileChooser jfc=new JFileChooser();
+		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY );
+		jfc.showDialog(new JLabel(), "选择");
+		File file=jfc.getSelectedFile();
+
+		String filePath = file.getAbsolutePath();
+		resultArea.setText(filePath+" ====== Job Start \n");
+
+		try {
+			customerString = new Scanner(new File(file.getAbsolutePath())).useDelimiter("\\Z").next();
+			resultArea.append(customerString);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			resultArea.append("Cannot Read File Error !!! Please Contact xiaonanche@qq.com");
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultArea.append(" File Content Error !!! Please Contact xiaonanche@qq.com");
+		}
+
+		resultArea.append("\n ====== Job Done");
+	}
+	
+	private void initialCustomerFromString(String customerString) {
+		if(this.longZhuCustomers == null){
+			this.longZhuCustomers = new ArrayList<QuanMinUser>();
+
+			String[] customers = customerString.split("\n");
+			for (int i = 0; i< customers.length; i++) {
+				String customerStr = customers[i];
+				String[] customerFields = customerStr.split(",");
+				if (customerFields.length != 6) {
+					continue;
+				} else {
+					String region = customerFields[2].trim();
+					String sessionId = customerFields[3].trim();
+					String qqNumber = customerFields[5].trim();
+					longZhuCustomers.add(new QuanMinUser(region,sessionId,0,qqNumber));
+				}
+			}
+
+		}
 	}
 
 	private void beginWork() {
 		cutButton.setEnabled(false);
-		interval = new Integer(secondText.getText()).intValue();
-		if (interval < 1 || interval > 65)
-			interval = 61;
-
-		timeDuration = new Integer(timeText.getText()).intValue();
-		if (timeDuration < 10)
-			timeDuration = 30;
-
-		initQuanMinUser();
 		
-		for(int i=0 ; i<quanMinCustomers.size(); i += 1){
+		freeCustomerNumber = new Integer(freeNumberTextField.getText()).intValue(); 
+		
+		initialCustomerFromString(customerString);
+		
+		for(int i=0 ; i<longZhuCustomers.size(); i += 1){
 			DaiDaThread m = new DaiDaThread(i);
 			new Thread(m).start();
 			try{
@@ -94,7 +143,7 @@ public class LongZhuTest extends Frame implements ActionListener {
 		      }  
 		}
 
-		System.out.println("...." + interval);
+		System.out.println(".... start");
 	}
 
 	static int landaCount = 0;
@@ -119,7 +168,7 @@ public class LongZhuTest extends Frame implements ActionListener {
 		public void run() {
 			System.out.println("begin....");
 			try {
-				doQuanMinDaiDa(this.threadNumber);
+				doLongZhuShuaShui(this.threadNumber);
 				System.exit(0);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -134,35 +183,33 @@ public class LongZhuTest extends Frame implements ActionListener {
 		tf1.setVisible(true);
 	}
 
-	private void initQuanMinUser(){
+	private void initQuanMinCustomers(){
 		
-		if(this.quanMinCustomers == null){
-			this.quanMinCustomers = new ArrayList<QuanMinUser>();
+		if(this.longZhuCustomers == null){
+			this.longZhuCustomers = new ArrayList<QuanMinUser>();
 
 			//98  120.132.77.173
 			//117 120.132.77.173
-			quanMinCustomers.add(new QuanMinUser("117","kuaiyong_s57d94296eea0b",160922,"330434980"));
+			longZhuCustomers.add(new QuanMinUser("117","kuaiyong_s57d94296eea0b",160922,"330434980"));
 
 			// mzky2327  3266585     98区，快用 qq:121114123
-			quanMinCustomers.add(new QuanMinUser("98","kuaiyong_s57b6f76a97b69",161023,"121114123"));
+			longZhuCustomers.add(new QuanMinUser("98","kuaiyong_s57b6f76a97b69",161023,"121114123"));
 			// y891223   3266585，一样的快用，98区 qq:373132213
-			quanMinCustomers.add(new QuanMinUser("98","kuaiyong_s57b6cd511bcbc",161023,"373132213"));
+			longZhuCustomers.add(new QuanMinUser("98","kuaiyong_s57b6cd511bcbc",161023,"373132213"));
 			// ios longzhu  rr365787   123456  57 qq: 614040711
-			quanMinCustomers.add(new QuanMinUser("57","kuaiyong_s557110a3d2052",160930,"614040711"));
+			longZhuCustomers.add(new QuanMinUser("57","kuaiyong_s557110a3d2052",160930,"614040711"));
 
 			// jiuyou longzhu 420690547  13432169259123 81  qq: 1219421451
 //			quanMinCustomers.add(new QuanMinUser("81","uc_1474397353",160930,"1219421451"));
-
 		}
 	}
 
 
-public void doQuanMinDaiDa(int threadNumber) {
+public void doLongZhuShuaShui(int threadNumber) {
 		
-		QuanMinUser user = this.quanMinCustomers.get(threadNumber);
+		QuanMinUser user = this.longZhuCustomers.get(threadNumber);
 		String regin = user.getRegionNumber();
 		String session = user.getSessionId();
-		
 
 		int sleepInterval = 60;
 		int dateIndex = -3;
@@ -203,8 +250,13 @@ public void doQuanMinDaiDa(int threadNumber) {
 				int curHp = getBossCurHp(jsonXue);
 				System.out.println("bossCurHp: " + curHp);
 				if(curHp > 0){
-					label.setText("bossCurHp : " + curHp +" of "+regin);
-					sleepInterval = 16;
+					updateBossHPMap(regin,curHp+"");
+					if (threadNumber < freeCustomerNumber) {
+						sleepInterval = 61;
+					} else {
+						sleepInterval = 16;
+					}
+					
 					String urlFuHuo = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=27&actId=3&ts="
 							+ getDateString("")
 							+ "&_session="+session+"&";
@@ -215,7 +267,6 @@ public void doQuanMinDaiDa(int threadNumber) {
 				}
 
 			}else{
-//				label.setText("bossCurHp : dead");
 				if(dateIndex >= 0){
 					dateIndex = -2;
 				}
@@ -225,14 +276,26 @@ public void doQuanMinDaiDa(int threadNumber) {
 			}
 			
 			try {
+				landaCount++;
+				label.setText(landaCount+"");
 				Thread.currentThread().sleep(sleepInterval * 1000);
 			} catch (InterruptedException e) {
-				// e.printStackTrace();
 			}
 		}
 
 	}
 	
+	private void updateBossHPMap(String region, String bossHP) {
+		bossHPMap.put(region, bossHP);
+		resultArea.setText("Boss HP Status ====== : \n");
+		Iterator keyIterator = bossHPMap.keySet().iterator(); 
+		while (keyIterator.hasNext()) {
+			String regionStr = (String)keyIterator.next();
+			String hpStr = bossHPMap.get(regionStr);
+			resultArea.append(regionStr + " : "+hpStr+"\n");
+		}
+	}
+
 	public int checkTime(int beginHour,int beginMinute,int duration){
 		
 	    GregorianCalendar currentTime = new GregorianCalendar();
