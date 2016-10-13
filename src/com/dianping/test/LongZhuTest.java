@@ -52,7 +52,8 @@ public class LongZhuTest extends Frame implements ActionListener {
 		cutButton.addActionListener(this);
 		toolbar.add(cutButton);
 
-		freeNumberTextField = new JTextField(1);
+		freeNumberTextField = new JTextField(6);
+		freeNumberTextField.setText("3");
 		toolbar.add(freeNumberTextField);
 		
 		label = new Label("LanDaCount :      ");
@@ -221,7 +222,7 @@ public void doLongZhuShuaShui(int threadNumber) {
 		while (true) {
 			sleepInterval = 60;
 			
-			if(checkTime(2,05,10) == 1){
+			if(checkTime(2,05,1) == 1){
 				
 				String lingJiang = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=28&actId=2&ts=1429539332730&_session="+session+"&";
 				sendRequest(lingJiang, "data={\"type\": \"total\", \"index\": 0,\"huoDongId\": \""+getDateString(dateIndex)+"\"}");
