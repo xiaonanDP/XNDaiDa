@@ -201,7 +201,8 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		System.out.println(a);
 	}
 	
-	public void doLongZhuYiZhi10(String regin , String session, int targetYiZhi) {
+	public void doLongZhuYiZhi10(String regin , String session, int targetYiZhi, int targetLevel) {
+		doLongZhuYiZhiIntensify(regin,session,targetYiZhi,targetLevel);
 		if (targetYiZhi > 0) {
 			for (int i = 0; i< 50; i++) {
 				String liLian = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=32&actId=5&ts=1475549813651&_session="+session+"&";
@@ -214,19 +215,19 @@ public void doQuanMinLiaoLi(String regin , String session) {
 				}
 			}
 		}
-		doLongZhuYiZhiIntensify(regin,session,targetYiZhi);
+		
 	}
 	
-	public void doLongZhuYiZhiIntensify(String regin , String session , int targetYiZhi) {
+	public void doLongZhuYiZhiIntensify(String regin , String session , int targetYiZhi, int targetLevel) {
 
 		// check YiZhi
 		String liLian = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=32&actId=1&ts=1475551037281&_session="+session+"&";
 		String a = sendRequest(liLian, "data=%7B%7D");
 		System.out.println(a);
-		String loserStr = getAllLoser(a,targetYiZhi,200);
+		String loserStr = getAllLoser(a,targetYiZhi,200,targetLevel);
 		System.out.println(loserStr);
 		
-		if (targetYiZhi <= 0) {
+		if (targetYiZhi <= 0 || loserStr.length() <= 0) {
 			return;
 		}
 		// intensify YiZhi
@@ -235,7 +236,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 //		System.out.println(b);
 	}
 	
-	private static String getAllLoser(String JSONText,int target,int maxCount) {
+	private static String getAllLoser(String JSONText,int target,int maxCount, int targetLevel) {
 		JSONTokener jsonTokener = new JSONTokener(JSONText);
 		JSONArray array;
 		JSONObject studentJSONObject;
@@ -261,7 +262,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 						result.append(uid).append(",");
 					}
 					if (target == uid) {
-						if (level >= 10) {
+						if (level >= targetLevel) {
 							System.exit(0);
 						} else {
 							System.out.println(" target "+uid+" level ======: "+level);
@@ -274,7 +275,12 @@ public void doQuanMinLiaoLi(String regin , String session) {
 			// e.printStackTrace();
 		}
 		String resultStr = result.toString();
-		return resultStr.substring(0, resultStr.length()-1);
+		if (resultStr.length() > 0) {
+			return resultStr.substring(0, resultStr.length()-1);
+		} else {
+			return resultStr;
+		}
+		
 	}
 	
 	/**
@@ -282,7 +288,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 	 */
 	public void doXiaonancheLanDa() {
 
-		// ***************** mengxiang huoying ****************
+// ***************** mengxiang huoying ****************
 
 		// 账号：15771879505 密码：1341338010 39区 烟花寂凉 对了。梦想火影，iOS快用 qq:1341338010 fu 200
 		/*
@@ -300,7 +306,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		//		doMengXiangHuoYingLiaoLi("39","kuaiyong_s542ffb663ab1f");
 
 
-		// ***************** LongZhu **************** 120.132.77.173
+// ***************** LongZhu **************** 120.132.77.173
 		
 		// ios wukongchuanqi  rr365787   123456  57 qq: 614040711
 		/* 
@@ -323,14 +329,27 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		// 113区 BaiDu ssjia2000 abc123456 qq:346577928 
 //		doLongZhuLiLian("113", "baidu_1923458579", "2", "27");
 		
-//		doLongZhuLiaoLi("113", "pyw_45b68174e0020b50f0129f8405eb9526");
+		//  cc2855155  3266585 116 快用 qq: 121114123 
+//		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "1", "27");
+//		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "2", "27");
+//		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "14", "27");
+		
+		// 3*999 done
+		// 3*999 done
+		// 10 YIZHI doing ...
+		// 4*999
+		// 10 YIZHI
+		
+//		doLongZhuLiaoLi("116", "kuaiyong_s57eb435aed328");
 
 // ***************** LongZhu GuiDao ****************
 		//账号zz2855155  3266585 56 qu session:kuaiyong_s57bab91594bc0
 		
 		// y891223   3266585，一样的快用，98区 qq:373132213  session:kuaiyong_s57b6cd511bcbc
-		// 835  910  923
-		doLongZhuYiZhi10("98","kuaiyong_s57b6cd511bcbc",-1);
+		
+		// 236 , 284 , 382 done 
+		// 1831 , 1835 , 1909 ???
+		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",1831,11);
 		
 		
 // ***************** LongZhu LiBao ****************
