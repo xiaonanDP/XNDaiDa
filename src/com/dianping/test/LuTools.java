@@ -233,7 +233,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		// intensify YiZhi
 		String intensify = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=32&actId=2&ts=1475550477435&_session="+session+"&";
 		String b = sendRequest(intensify, "data={\"uid\": "+targetYiZhi+",\"teamMember\": -1,\"consumes\": ["+loserStr+"],\"memberPos\": -1}");
-//		System.out.println(b);
+		System.out.println(b);
 	}
 	
 	private static String getAllLoser(String JSONText,int target,int maxCount, int targetLevel) {
@@ -336,8 +336,8 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		
 		// 3*999 done
 		// 3*999 done
-		// 10 YIZHI doing ...
-		// 4*999
+		// 10 YIZHI done
+		// 4*999 done 
 		// 10 YIZHI
 		
 //		doLongZhuLiaoLi("116", "kuaiyong_s57eb435aed328");
@@ -348,9 +348,10 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		// y891223   3266585，一样的快用，98区 qq:373132213  session:kuaiyong_s57b6cd511bcbc
 		
 		// 236 , 284 , 382 done 
-		// 1831 , 1835 , 1909 ???
-		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",1831,11);
-		
+		// 1831 , 1835 , 1909 done
+		// 1929  2002 2228 2005
+		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",2005,11);
+
 		
 // ***************** LongZhu LiBao ****************
 		
