@@ -213,6 +213,8 @@ public class LongZhuTest extends Frame implements ActionListener {
 			
 			// mwkcq806 147258369 65 BaiDu LongZhu qq:714729297  baidu_1368238427
 			
+			//360 long zhu 18219186415 1666103785  65 qq: 1666103785  360_2518750357
+			
 			
 		}
 	}
