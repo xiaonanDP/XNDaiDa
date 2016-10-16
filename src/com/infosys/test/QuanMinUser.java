@@ -2,6 +2,8 @@ package com.infosys.test;
 
 public class QuanMinUser {
 
+	private String gameType;
+	private String userType;
 	private String regionNumber;
 	private String sessionId;
 	private int endDate;
@@ -29,6 +31,18 @@ public class QuanMinUser {
 	public String getSessionId() {
 		return sessionId;
 	}
+	public String getGameType() {
+		return gameType;
+	}
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
@@ -36,6 +50,16 @@ public class QuanMinUser {
 		super();
 		this.regionNumber = regionNumber;
 		this.sessionId = sessionId;
+	}
+	public QuanMinUser(String gameType, String userType, String regionNumber,
+			String sessionId, int endDate, String qqNumber) {
+		super();
+		this.gameType = gameType;
+		this.userType = userType;
+		this.regionNumber = regionNumber;
+		this.sessionId = sessionId;
+		this.endDate = endDate;
+		this.qqNumber = qqNumber;
 	}
 	public QuanMinUser(String regionNumber, String sessionId, int endDate,
 			String qqNumber) {

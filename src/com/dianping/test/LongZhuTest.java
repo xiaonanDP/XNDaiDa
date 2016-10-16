@@ -117,10 +117,12 @@ public class LongZhuTest extends Frame implements ActionListener {
 				if (customerFields.length != 6) {
 					continue;
 				} else {
+					String gameType = customerFields[0].trim();
+					String userType = customerFields[1].trim();
 					String region = customerFields[2].trim();
 					String sessionId = customerFields[3].trim();
 					String qqNumber = customerFields[5].trim();
-					longZhuCustomers.add(new QuanMinUser(region,sessionId,0,qqNumber));
+					longZhuCustomers.add(new QuanMinUser(gameType,userType,region,sessionId,0,qqNumber));
 				}
 			}
 
@@ -206,6 +208,12 @@ public class LongZhuTest extends Frame implements ActionListener {
 			// jiuyou longzhu 420690547  13432169259123 81  qq: 1219421451
 //			longZhuCustomers.add(new QuanMinUser("81","uc_1474397353",160930,"1219421451"));
 
+			// acyy5415 当乐82区全民死神 密码123456 qq: 2276015571 161015
+			// 82 downjoy_1002861531 s82.ss.tuziyouxi.com
+			
+			// mwkcq806 147258369 65 BaiDu LongZhu qq:714729297  baidu_1368238427
+			
+			
 		}
 	}
 
@@ -215,20 +223,29 @@ public void doLongZhuShuaShui(int threadNumber) {
 		QuanMinUser user = this.longZhuCustomers.get(threadNumber);
 		String regin = user.getRegionNumber();
 		String session = user.getSessionId();
-
+		String gameType = user.getGameType();
+		String userType = user.getUserType();
+		
+		String gameServer = "";
+		if ("1".equalsIgnoreCase(gameType)) {
+			gameServer = "lz.tuziyouxi.com";
+		} else if ("2".equalsIgnoreCase(gameType)) {
+			gameServer = "ss.tuziyouxi.com";
+		} else if ("3".equalsIgnoreCase(gameType)) {
+			gameServer = "hy.youai.tuziyouxi.com";
+		}
+		
 		int sleepInterval = 60;
 		int dateIndex = -3;
 		int loginIndex = -1;
 		while (true) {
 			sleepInterval = 60;
-			
 			if(checkTime(2,05,1) == 1){
-				
-				String lingJiang = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=28&actId=2&ts=1429539332730&_session="+session+"&";
+				String lingJiang = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=28&actId=2&ts=1429539332730&_session="+session+"&";
 				sendRequest(lingJiang, "data={\"type\": \"total\", \"index\": 0,\"huoDongId\": \""+getDateString(dateIndex)+"\"}");
-				String xuYuan = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=25&actId=3&ts=1429539702978&_session="+session+"&";
+				String xuYuan = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=25&actId=3&ts=1429539702978&_session="+session+"&";
 				sendRequest(xuYuan, "data=%7B%7D");
-				String teXun = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=22&actId=2&ts=1429540016728&_session="+session+"&";
+				String teXun = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=22&actId=2&ts=1429540016728&_session="+session+"&";
 				sendRequest(teXun, "data=%7B%7D");
 				
 				label.setText("dateIndex : " + dateIndex);
@@ -236,33 +253,27 @@ public void doLongZhuShuaShui(int threadNumber) {
 					dateIndex += 1;
 				}
 			}else if(checkTime(12,0,5) == 1 || checkTime(18,0,5) == 1){
-//				sleepInterval = 5;
-				String lingTiLi = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=18&actId=2&ts=1429610560315&_session="+session+"&";
+				String lingTiLi = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=18&actId=2&ts=1429610560315&_session="+session+"&";
 				sendRequest(lingTiLi, "data=%7B%7D");
-
-//				String liaoLi = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=7&actId=2&ts=1396879194264&_session="+session+"&";
-//				sendRequest(liaoLi, "data={\"itemid\": 25010001,\"data\": null}");
-
-//				String liLian = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
-//				String a = sendRequest(liLian, "data={\"mission\": 0,\"chapter\": 6}");
-//				System.out.println(a);
-				
-			}else if(checkTime(12,30,600) == 1){
-				String urlChaXue = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=27&actId=2&ts="
+			}else if (checkTimeExcept(8,8) == 1){
+				/*("1".equalsIgnoreCase(gameType) && checkTimeExcept(11,10) == 1) 
+				||("2".equalsIgnoreCase(gameType) && checkTime(20,0,600) == 1)
+				||("3".equalsIgnoreCase(gameType) && checkTime(20,30,600) == 1)
+				*/
+				String urlChaXue = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=27&actId=2&ts="
 						+ getDateString("") + "&_session="+session+"&";
 				String jsonXue = sendRequest(urlChaXue, "data=%7B%7D");
 
 				int curHp = getBossCurHp(jsonXue);
 				System.out.println("bossCurHp: " + curHp);
+				updateBossHPMap(gameType+"-"+regin,curHp+"");
 				if(curHp > 0){
-					updateBossHPMap(regin,curHp+"");
-					if (threadNumber < freeCustomerNumber) {
-						sleepInterval = 61;
-					} else {
+					if ("1".equalsIgnoreCase(userType)) {
 						sleepInterval = 16;
+					} else {
+						sleepInterval = 61;
 					}
-					
-					String urlFuHuo = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=27&actId=3&ts="
+					String urlFuHuo = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=27&actId=3&ts="
 							+ getDateString("")
 							+ "&_session="+session+"&";
 					String b = sendRequest(urlFuHuo,"data=%7B%0A%20%20%22type%22%3A%20%221%22%0A%7D");
@@ -317,6 +328,19 @@ public void doLongZhuShuaShui(int threadNumber) {
 	      return 1;
 	    }else{
 	      return 0;
+	    }
+	  }
+	
+	public int checkTimeExcept(int stopBeginHour,int stopEndHour){
+	    GregorianCalendar currentTime = new GregorianCalendar();
+	    currentTime.setTime(new Date());
+	    int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+	    if (stopEndHour <= stopBeginHour) {
+	    	return 1;
+	    } else if (hour >= stopBeginHour && hour <= stopEndHour) {
+	    	return 0;
+	    } else {
+	    	return 1;
 	    }
 	  }
 	
