@@ -281,7 +281,7 @@ public void doLongZhuShuaShui(int threadNumber) {
 					String b = sendRequest(urlFuHuo,"data=%7B%0A%20%20%22type%22%3A%20%221%22%0A%7D");
 					System.out.println(b);
 				}else{
-					sleepInterval = 610;
+					sleepInterval = 61;
 				}
 
 			}else{
@@ -337,7 +337,7 @@ public void doLongZhuShuaShui(int threadNumber) {
 	    GregorianCalendar currentTime = new GregorianCalendar();
 	    currentTime.setTime(new Date());
 	    int hour = currentTime.get(Calendar.HOUR_OF_DAY);
-	    if (stopEndHour <= stopBeginHour) {
+	    if (stopEndHour < stopBeginHour) {
 	    	return 1;
 	    } else if (hour >= stopBeginHour && hour <= stopEndHour) {
 	    	return 0;
