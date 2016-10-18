@@ -334,11 +334,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 //		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "2", "27");
 //		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "14", "27");
 		
-		// 3*999 done
-		// 3*999 done
-		// 10 YIZHI done
-		// 4*999 done 
-		// 10 YIZHI
+        
 		
 //		doLongZhuLiaoLi("116", "kuaiyong_s57eb435aed328");
 
@@ -347,9 +343,7 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		
 		// y891223   3266585，一样的快用，98区 qq:373132213  session:kuaiyong_s57b6cd511bcbc
 		
-		// 236 , 284 , 382 done 
-		// 1831 , 1835 , 1909 done
-		// 1929  2002 2228 2005
+
 		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",2005,11);
 
 		
