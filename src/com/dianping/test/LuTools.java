@@ -137,10 +137,10 @@ public class LuTools extends Frame implements ActionListener {
 		return a;
 	}
 	
-public void doQuanMinDaiDa(String regin , String session) {
+public void doQuanMinDaiDa(String regin , String session , String mission , String chapter) {
 
 	String liLian = "http://s"+regin+".ss.tuziyouxi.com/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
-	String a = sendRequest(liLian, "data={\"mission\": 7,\"chapter\": 25}");
+	String a = sendRequest(liLian, "data={\"mission\": "+mission+",\"chapter\": "+chapter+"}");
 	System.out.println(a);
 }
 
@@ -294,30 +294,13 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		/*
 		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","0","27");
 		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","1","27");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","2","27");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","3","27");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","4","27");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","5","27");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","7","25");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","8","25");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","9","25");
-		doMengXiangHuoYingLiLian("39","kuaiyong_s542ffb663ab1f","10","25");
 		 */
 		//		doMengXiangHuoYingLiaoLi("39","kuaiyong_s542ffb663ab1f");
-
 
 // ***************** LongZhu **************** 120.132.77.173
 		
 		// ios wukongchuanqi  rr365787   123456  57 qq: 614040711
 		/* 
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "4", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "5", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "7", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "8", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "9", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "10", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "11", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "12", "26");
 		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "0", "27");
 		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "1", "27");
 		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "2", "27");
@@ -356,10 +339,16 @@ public void doQuanMinLiaoLi(String regin , String session) {
 //		doLongZhuLiBao("98", "kuaiyong_s57b6cd511bcbc", "23080101", "null");
 
 		
-// ***************** quan min ****************
+// ***************** quan min ****************  120.132.76.45
 		// 安卓91平台 6区 账号qxs1219 密码159357  qq : 1655799714  
 //		doQuanMinDaiDa("6","380253849"); 
+
+		// a727687451     757687451a    79区  梦想死神 泡椒平台 qq: 727687451
+//		doQuanMinDaiDa("79","uc2_1202857744","0","13");
+//		doQuanMinDaiDa("79","uc2_1202857744","1","13");		
+		
 //		doQuanMinLiaoLi("6","380253849");
+		
 		
 		landaCount++;
 		if(landaCount >= timeDuration){

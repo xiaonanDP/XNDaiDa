@@ -215,6 +215,7 @@ public class LongZhuTest extends Frame implements ActionListener {
 			
 			//360 long zhu 18219186415 1666103785  65 qq: 1666103785  360_2518750357
 			
+			// MXSS 15222751667    114012   79 qq: 3076352584 fu 3 kuai 1minute kuaiyong2_s57c3c11521940
 			
 		}
 	}
@@ -262,6 +263,7 @@ public void doLongZhuShuaShui(int threadNumber) {
 				||("2".equalsIgnoreCase(gameType) && checkTime(20,0,600) == 1)
 				||("3".equalsIgnoreCase(gameType) && checkTime(20,30,600) == 1)
 				*/
+					
 				String urlChaXue = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=27&actId=2&ts="
 						+ getDateString("") + "&_session="+session+"&";
 				String jsonXue = sendRequest(urlChaXue, "data=%7B%7D");
