@@ -334,18 +334,20 @@ public void doQuanMinLiaoLi(String regin , String session) {
 //		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "2", "27");
 //		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "14", "27");
 		
-        
+		// 账号1083087226  密码0947438951  116 新的起点 2元宝复活  qq：1083087226  uc3_027f4c8b9b65c8a44d0ddbef50ade322
+		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "0", "27");
+		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "1", "27");
+		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "2", "27");
 		
-//		doLongZhuLiaoLi("116", "kuaiyong_s57eb435aed328");
+		
+//		doLongZhuLiaoLi("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322");
 
 // ***************** LongZhu GuiDao ****************
 		//账号zz2855155  3266585 56 qu session:kuaiyong_s57bab91594bc0
 		
 		// y891223   3266585，一样的快用，98区 qq:373132213  session:kuaiyong_s57b6cd511bcbc
-		
 
-		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",2005,11);
-
+//		doLongZhuYiZhi10("116","kuaiyong_s57eb435aed328",2005,11);
 		
 // ***************** LongZhu LiBao ****************
 		
