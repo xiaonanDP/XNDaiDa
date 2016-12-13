@@ -215,6 +215,7 @@ public class LongZhuTest extends Frame implements ActionListener {
 			
 			//360 long zhu 18219186415 1666103785  65 qq: 1666103785  360_2518750357
 			
+			// MXSS 15222751667    114012   79 qq: 3076352584 fu 3 kuai 1minute kuaiyong2_s57c3c11521940
 			
 		}
 	}
@@ -257,11 +258,16 @@ public void doLongZhuShuaShui(int threadNumber) {
 			}else if(checkTime(12,0,5) == 1 || checkTime(18,0,5) == 1){
 				String lingTiLi = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=18&actId=2&ts=1429610560315&_session="+session+"&";
 				sendRequest(lingTiLi, "data=%7B%7D");
-			}else if (checkTimeExcept(8,8) == 1){
-				/*("1".equalsIgnoreCase(gameType) && checkTimeExcept(11,10) == 1) 
-				||("2".equalsIgnoreCase(gameType) && checkTime(20,0,600) == 1)
-				||("3".equalsIgnoreCase(gameType) && checkTime(20,30,600) == 1)
+			}else if (("1".equalsIgnoreCase(gameType) && checkTimeExcept(21,22) == 1)
+					||("2".equalsIgnoreCase(gameType) && checkTimeExcept(8,8) == 1)
+					||("3".equalsIgnoreCase(gameType) && checkTimeExcept(8,8) == 1)) {
+				/*
+				 * (checkTimeExcept(21,22) == 1)
+				 * ("1".equalsIgnoreCase(gameType) && checkTimeExcept(11,10) == 1) 
+				|| ("2".equalsIgnoreCase(gameType) && checkTime(20,0,600) == 1)
+				|| ("3".equalsIgnoreCase(gameType) && checkTime(20,30,600) == 1)
 				*/
+					
 				String urlChaXue = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=27&actId=2&ts="
 						+ getDateString("") + "&_session="+session+"&";
 				String jsonXue = sendRequest(urlChaXue, "data=%7B%7D");
