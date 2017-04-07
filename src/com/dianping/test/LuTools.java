@@ -17,6 +17,10 @@ import cn.redcdn.datacenter.httprequest.HttppostDataCenter;
 
 public class LuTools extends Frame implements ActionListener {
 
+	private static final String longZhuServer = "lz.tuziyouxi.com";
+	private static final String siShenServer = "ss.tuziyouxi.com";
+	private static final String huoYingServer = "hy.youai.tuziyouxi.com";
+	
 	/**
 	 * 
 	 */
@@ -136,55 +140,17 @@ public class LuTools extends Frame implements ActionListener {
 		String a = postDataCenter.doPost();
 		return a;
 	}
-	
-public void doQuanMinDaiDa(String regin , String session , String mission , String chapter) {
 
-	String liLian = "http://s"+regin+".ss.tuziyouxi.com/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
-	String a = sendRequest(liLian, "data={\"mission\": "+mission+",\"chapter\": "+chapter+"}");
-	System.out.println(a);
-}
-
-public void doQuanMinLiaoLi(String regin , String session) {
-	
-	String liaoLi = "http://s"+regin+".ss.tuziyouxi.com/cmd.php?moduleId=7&actId=2&ts=1396879194264&_session="+session+"&";
-	String a = sendRequest(liaoLi, "data={\"itemid\": 25010001,\"data\": null}");
-	System.out.println(a);	
-}
-
-	/**
-	 * MengXiang HuoYing
-	 */
-
-	public void doMengXiangHuoYingLiLian(String regin , String session , String mission , String chapter) {
-
-		String liLian = "http://s"+regin+".hy.youai.tuziyouxi.com/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
-		String a = sendRequest(liLian, "data={\"mission\": "+mission+",\"chapter\": "+chapter+"}");
-//		System.out.println(a);
-	}
-
-	public void doMengXiangHuoYingLiaoLi(String regin , String session) {
-
-		String liaoLi = "http://s"+regin+".hy.youai.tuziyouxi.com/cmd.php?moduleId=7&actId=2&ts=1396879194264&_session="+session+"&";
-		String a = sendRequest(liaoLi, "data={\"itemid\": 25010001,\"data\": null}");
-		System.out.println(a);
-	}
-
-	/**
-	 * WuKong ChuanQi Long Zhu
-	 */
-
-	public void doLongZhuLiLian(String regin , String session , String mission , String chapter) {
-
-		String liLian = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
+	public void doLiLian(String server ,String regin , String session , String mission , String chapter) {
+		String liLian = "http://s"+regin+"."+server+"/cmd.php?moduleId=4&actId=4&ts=1429540167095&_session="+session+"&";
 		String a = sendRequest(liLian, "data={\"mission\": "+mission+",\"chapter\": "+chapter+"}");
 		System.out.println(a);
 	}
 
-	public void doLongZhuLiaoLi(String regin , String session) {
-
-		String liaoLi = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=7&actId=2&ts=1396879194264&_session="+session+"&";
+	public void doLiaoLi(String server ,String regin , String session) {
+		String liaoLi = "http://s"+regin+"."+server+"/cmd.php?moduleId=7&actId=2&ts=1396879194264&_session="+session+"&";
 		String a = sendRequest(liaoLi, "data={\"itemid\": 25010001,\"data\": null}");
-		System.out.println(a);
+		System.out.println(a);	
 	}
 
 	/**
@@ -195,7 +161,6 @@ public void doQuanMinLiaoLi(String regin , String session) {
 	 * @param data null
 	 */
 	public void doLongZhuLiBao(String regin , String session, String itemid , String data) {
-
 		String liLian = "http://s"+regin+".lz.tuziyouxi.com/cmd.php?moduleId=7&actId=2&ts=1475364673361&_session="+session+"&";
 		String a = sendRequest(liLian, "data={\"itemid\": "+itemid+",\"data\": "+data+"}");
 		System.out.println(a);
@@ -302,15 +267,6 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		// ios wukongchuanqi  rr365787   123456  57 qq: 614040711
 		/*  
 		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "0", "27");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "1", "27");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "2", "27");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "0", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "1", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "2", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "3", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "4", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "5", "26");
-		doLongZhuLiLian("57", "kuaiyong_s557110a3d2052", "7", "26");
 		*/
 		
 		// 113 pyw990901628 qwer1234 优趣版本  qq: 1013135714 chapter:复活F:27
@@ -321,22 +277,28 @@ public void doQuanMinLiaoLi(String regin , String session) {
 		
 		//  cc2855155  3266585 116 快用 qq: 121114123 
 //		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "1", "27");
-//		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "2", "27");
-//		doLongZhuLiLian("116", "kuaiyong_s57eb435aed328", "14", "27");
 		
 		// 账号1083087226  密码0947438951  116 新的起点 2元宝复活  qq：1083087226  uc3_027f4c8b9b65c8a44d0ddbef50ade322
 //		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "0", "27");
 //		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "1", "27");
 //		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "2", "27");
 		
-//		doLongZhuLiaoLi("57", "kuaiyong_s557110a3d2052");
+		// 108区 uc_1847844843 qq: 472677535  未来少年-王族精英1  14-
+		// 108 区  uc_1847844843  qq: 472677535 地府武道会 又见杀鲁 18-10 
+		//  法师巴菲通 太空船战士1 20-9 
+//		doLiLian(longZhuServer,"108", "uc_1847844843", "9", "20");
+		
+		// yj_214749336825 112区 qq: 903438003
+		doLiLian(longZhuServer,"112", "yj_214749336825", "2", "27");
+		
+//		doLiaoLi(longZhuServer,"108", "uc_1847844843");
 
 // ***************** LongZhu GuiDao ****************
 		//账号zz2855155  3266585 56 qu session:kuaiyong_s57bab91594bc0
 		
 		// y891223   3266585，一样的快用，98区 qq:373132213  session:kuaiyong_s57b6cd511bcbc
 		// 9313 10s 百步穿杨 , 9281 11a 铁血
-		doLongZhuYiZhi10("57","kuaiyong_s557110a3d2052",9281,11);
+//		doLongZhuYiZhi10("57","kuaiyong_s557110a3d2052",9281,11);
 		
 // ***************** LongZhu LiBao ****************
 		
@@ -344,7 +306,6 @@ public void doQuanMinLiaoLi(String regin , String session) {
 //		doLongZhuLiBao("98", "kuaiyong_s57b6cd511bcbc", "23080098", "null");
 //		doLongZhuLiBao("98", "kuaiyong_s57b6cd511bcbc", "23080101", "null");
 
-		
 // ***************** quan min ****************  120.132.76.45
 		// 安卓91平台 6区 账号qxs1219 密码159357  qq : 1655799714  
 //		doQuanMinDaiDa("6","380253849"); 
