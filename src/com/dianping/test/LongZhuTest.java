@@ -258,7 +258,7 @@ public void doLongZhuShuaShui(int threadNumber) {
 			}else if(checkTime(12,0,5) == 1 || checkTime(18,0,5) == 1){
 				String lingTiLi = "http://s"+regin+"."+gameServer+"/cmd.php?moduleId=18&actId=2&ts=1429610560315&_session="+session+"&";
 				sendRequest(lingTiLi, "data=%7B%7D");
-			}else if (("1".equalsIgnoreCase(gameType) && checkTimeExcept(21,22) == 1)
+			}else if (("1".equalsIgnoreCase(gameType) && checkTimeExcept(21,21) == 1)
 					||("2".equalsIgnoreCase(gameType) && checkTimeExcept(8,8) == 1)
 					||("3".equalsIgnoreCase(gameType) && checkTimeExcept(8,8) == 1)) {
 				/*
