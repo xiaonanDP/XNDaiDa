@@ -283,6 +283,7 @@ public class LuTools extends Frame implements ActionListener {
 //		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "1", "27");
 //		doLongZhuLiLian("116", "uc3_027f4c8b9b65c8a44d0ddbef50ade322", "2", "27");
 		
+
 		// 108区 uc_1847844843 qq: 472677535  未来少年-王族精英1  14-
 		// 108 区  uc_1847844843  qq: 472677535 地府武道会 又见杀鲁 18-10 
 		//  法师巴菲通 太空船战士1 20-9 
@@ -291,12 +292,15 @@ public class LuTools extends Frame implements ActionListener {
 		// yj_214749336825 112区 qq: 903438003
 //		doLiLian(longZhuServer,"112", "yj_214749336825", "2", "27");
 		
-		// 1,1,117,uc_1714403124,170410,304780588
-		doLiLian(longZhuServer,"117", "uc_1714403124", "4", "27");
-		doLiLian(longZhuServer,"117", "uc_1714403124", "5", "27");
-		
-		
 //		doLiaoLi(longZhuServer,"117", "uc_1714403124");
+
+//		doLiaoLi(longZhuServer,"108", "uc_1847844843");
+
+		// 1,1,117,uc_1714403124,170410,304780588
+//		doLongZhuLiLian("117", "uc_1714403124", "0", "27");
+//		doLongZhuLiLian("117", "uc_1714403124", "1", "27");
+		
+//		doLongZhuLiaoLi("117", "uc_1714403124");
 
 // ***************** LongZhu GuiDao ****************
 		//账号zz2855155  3266585 56 qu session:kuaiyong_s57bab91594bc0
