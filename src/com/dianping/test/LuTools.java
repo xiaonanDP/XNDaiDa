@@ -289,9 +289,14 @@ public class LuTools extends Frame implements ActionListener {
 //		doLiLian(longZhuServer,"108", "uc_1847844843", "9", "20");
 		
 		// yj_214749336825 112区 qq: 903438003
-		doLiLian(longZhuServer,"112", "yj_214749336825", "2", "27");
+//		doLiLian(longZhuServer,"112", "yj_214749336825", "2", "27");
 		
-//		doLiaoLi(longZhuServer,"108", "uc_1847844843");
+		// 1,1,117,uc_1714403124,170410,304780588
+		doLiLian(longZhuServer,"117", "uc_1714403124", "4", "27");
+		doLiLian(longZhuServer,"117", "uc_1714403124", "5", "27");
+		
+		
+//		doLiaoLi(longZhuServer,"117", "uc_1714403124");
 
 // ***************** LongZhu GuiDao ****************
 		//账号zz2855155  3266585 56 qu session:kuaiyong_s57bab91594bc0
