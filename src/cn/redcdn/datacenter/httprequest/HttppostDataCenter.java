@@ -104,11 +104,11 @@ public class HttppostDataCenter {
 			mHttpPost.setHeader("Accept", "*/*");
 			mHttpPost.setHeader("Content-Type",
 					"application/x-www-form-urlencoded");
-			mHttpPost.setHeader("Referer", "app:/SiShenKuaiYong.swf");
-//			mHttpPost.setHeader("Accept-Language", "zh-cn");
+			mHttpPost.setHeader("Referer", "app:/longzhu_KY.swf");
+			mHttpPost.setHeader("Accept-Language", "zh-cn");
 //			mHttpPost.setHeader("Accept-Encoding", "gzip, deflate");
-			mHttpPost.setHeader("x-flash-version", "15,0,0,195");
-			mHttpPost.setHeader("User-Agent", "Mozilla/5.0 (iOS; U; zh-Hans) AppleWebKit/533.19.4 (KHTML, like Gecko) AdobeAIR/15.0");
+			mHttpPost.setHeader("x-flash-version", "19,0,0,169");
+			mHttpPost.setHeader("User-Agent", "Mozilla/5.0 (iOS; U; zh-CN) AppleWebKit/533.19.4 (KHTML, like Gecko) AdobeAIR/19.0");
 			
 		}catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
