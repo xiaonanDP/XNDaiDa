@@ -292,9 +292,29 @@ public class LuTools extends Frame implements ActionListener {
 //		doLiLian(longZhuServer,"112", "yj_214749336825", "2", "27");
 		
 		// 1,1,117,uc_1714403124,170410,304780588
-		doLiLian(longZhuServer,"117", "uc_1714403124", "4", "27");
-		doLiLian(longZhuServer,"117", "uc_1714403124", "5", "27");
-		
+		doLiLian(longZhuServer,"117", "uc_1714403124", "0", "27");
+		doLiLian(longZhuServer,"117", "uc_1714403124", "1", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "2", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "3", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "4", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "5", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "6", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "7", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "8", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "9", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "10", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "11", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "12", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "13", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "14", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "15", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "16", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "17", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "18", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "19", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "20", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "21", "27");
+//		doLiLian(longZhuServer,"117", "uc_1714403124", "22", "27");
 		
 //		doLiaoLi(longZhuServer,"117", "uc_1714403124");
 
